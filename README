@@ -1,0 +1,20 @@
+what to persist so that reconstruct easy:
+1. attributes
+2. attributeCount
+3. attributeValues
+
+
+===============================
+tables: user, project, attribute, attribute_value tables
+relation: user_project one-many, project_attribute one-many, 'attribute_attribute_value' one-many
+
+>> using above representation, for a given user we can get his/her project. from project we get list of attributes and from attributes we get list of attribute values.
+
+===================================
+
+timeseries data representation:
+data_item table: (data_id, col, row, value)
+relation: project_'data_item' one-many
+
+>> for a particular project, we can get all data IDs and therefore get all individual data items to construct the table again.
+>> how many time columns: max value of 'col'
