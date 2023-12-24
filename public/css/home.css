@@ -1,0 +1,46 @@
+#main-container{
+    display: flex;
+    flex-direction: row;
+    padding: 10px;
+}
+
+#label-container{
+    /* flex-grow: 0.5; */
+    color: red;
+}
+
+#timeseries-container{
+    flex-grow: 1;
+    
+    /* make it flex container */
+    display: flex;
+    flex-direction: row;
+
+}
+
+/* children of label-container */
+table, th, td{
+    border: solid 1px;
+    border-collapse: collapse;
+    padding: 5px;
+}
+
+th, td{
+    width: 100px;
+    height: 18px;
+}
+
+
+#timeseries-container input{
+    height: 18px;
+}
+
+/*  */
+
+#attribute-input-div input{
+    color: red;
+    height: 30px;
+    width: 30%;
+    margin-left: 5px;
+    margin-top: 5px;
+}
