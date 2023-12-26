@@ -16,10 +16,11 @@
         <% if(!hasExistingProject){ %>
             
             <div id="new-project-data-input">
-                Add attributes and their values<br>
+                <p>Add attributes and their values</p>
+                <div class="buttons">
                 <button id="add-attribute-btn">add</button><br>
                 <button id="proceed-btn">proceed</button>
-
+            </div>
                 <div id="attribute-input-div">
 
                 </div>
@@ -33,6 +34,10 @@
                     </div>
                     <div id="timeseries-container">
                         <!-- <button id="create-time-column-btn">+</button> -->
+                    </div>
+                    <div class="buttonsCopyPaste">
+                        <button id="copy">copy column data</button><br>
+                        <button id="paste">paste</button>
                     </div>
                 </div>
             </div>
@@ -48,6 +53,10 @@
                     </div>
                     <div id="timeseries-container">
                         <!-- <button id="create-time-column-btn">+</button> -->
+                    </div>
+                    <div class="buttons">
+                        <button id="copy">copy</button><br>
+                        <button id="paste">paste</button>
                     </div>
                 </div>
             </div>

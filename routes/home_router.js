@@ -1,12 +1,8 @@
 const express = require('express');
+const homeRouter = express.Router();
+homeRouter.get("/", (req, res) => {
+    const hasExistingProject = false;
+    res.render("home.ejs", {hasExistingProject});
+});
 
-const router = express.Router();
-
-module.exports = (data) => {
-    router.get("/", (req, res) => {
-        const hasExistingProject = false;
-        res.render("home.ejs", {hasExistingProject});
-    });
-
-    return router;
-}
+module.exports = homeRouter;

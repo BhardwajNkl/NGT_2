@@ -8,6 +8,7 @@ import {
 
 import { dataManipulation } from "./dataManipulation.js";
 import { attributes, attributeCount, attributeValues, treeRoot } from "./input.js";
+import { setLastClickedCell } from './shared.js';
 
 // // Sample Input 1
 // const attributes = new Array("country", "gender", "age group");
@@ -119,6 +120,7 @@ const createTimeColumn = () => {
   // 1. table create
   const timeTable = document.createElement("table");
   timeseriesId = timeseriesColumnCounter;
+  timeTable.id = 'timeseriesTable'
   timeTable.setAttribute("data-timeseries-column", timeseriesColumnCounter);
 
   // 2. create table head
@@ -150,7 +152,7 @@ const createTimeColumn = () => {
     const row = document.createElement("tr");
     row.setAttribute("data-timeseries-row", timeseriesRowCounter++);
     const cell = document.createElement("td");
-    cell.innerHTML = "<input class='value'>";
+    cell.innerHTML = "<input class='value paste-target'>";
     row.appendChild(cell);
     timeTable.appendChild(row);
     count++;
@@ -169,7 +171,7 @@ const createTimeColumn = () => {
       const totalRow = document.createElement("tr");
       totalRow.setAttribute("data-timeseries-row", timeseriesRowCounter++);
       const totalCell = document.createElement("th");
-      totalCell.innerHTML = "<input class='value'>";
+      totalCell.innerHTML = "<input class='value paste-target'>";
       totalRow.appendChild(totalCell);
       timeTable.appendChild(totalRow);
     });
@@ -182,7 +184,7 @@ const createTimeColumn = () => {
     timeseriesRowCounter++
   );
   const grandTotalCell = document.createElement("th");
-  grandTotalCell.innerHTML = "<input class='value'>";
+  grandTotalCell.innerHTML = "<input class='value paste-target'>";
   timeTableGrandTotalRow.appendChild(grandTotalCell);
   timeTable.appendChild(timeTableGrandTotalRow);
 
@@ -200,14 +202,25 @@ const createTimeColumn = () => {
   document.addEventListener("keydown", inputEventListener);
   inputFields.forEach((inputField) => {
     inputField.removeEventListener("input", inputEventListener);
+    inputField.removeEventListener("click", inputEventListener);
   });
 
-  // Attach new event listeners
   inputFields.forEach((inputField) => {
-    inputField.addEventListener("input", inputEventListener);
+    inputField.addEventListener('input', function (event) {
+      setLastClickedCell(event);
+      console.log('event',event)
+      console.log('if',inputField)
+      inputEventListener(event);
+    });
+  
+    inputField.addEventListener('click', function (event) {
+      setLastClickedCell(event);
+    });
   });
+
 }
 const btn = document.getElementById("create-time-column-btn");
 btn.addEventListener("click", createTimeColumn);
+
 
 export {createLabelTable}
