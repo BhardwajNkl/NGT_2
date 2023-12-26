@@ -19,20 +19,38 @@ const proceedBtn = document.getElementById("proceed-btn");
 const attributeInputDiv = document.getElementById("attribute-input-div");
 
 if(addAttributeBtn && proceedBtn){
-    addAttributeBtn.addEventListener("click", ()=>{
-        const newDiv = document.createElement("div");
-        newDiv.setAttribute("class","attribute-input");
-    
+    addAttributeBtn.addEventListener("click", () => {
+        const containerDiv = document.createElement("div");
+        containerDiv.setAttribute("class", "attribute-input-container");
+
+        const nameDiv = document.createElement("div");
+        nameDiv.setAttribute("class", "attribute-input");
+
+        const attributeNameLabel = document.createElement("label");
+        attributeNameLabel.innerHTML = "Attribute: ";
         const attributeNameInput = document.createElement("input");
-        attributeNameInput.setAttribute("class","attribute-name")
+        attributeNameInput.setAttribute("class", "input-field attribute-name");
+
+        nameDiv.appendChild(attributeNameLabel);
+        nameDiv.appendChild(attributeNameInput);
+
+        const valueDiv = document.createElement("div");
+        valueDiv.setAttribute("class", "attribute-input");
+
+        const attributeValuesLabel = document.createElement("label");
+        attributeValuesLabel.innerHTML = "Attribute Values: ";
         const attributeValuesInput = document.createElement("input");
-        attributeValuesInput.setAttribute("class","attribute-values");
-    
-        newDiv.appendChild(attributeNameInput);
-        newDiv.appendChild(attributeValuesInput);
-    
-        attributeInputDiv.appendChild(newDiv);
-    })
+        attributeValuesInput.setAttribute("class", "input-field attribute-values");
+
+        valueDiv.appendChild(attributeValuesLabel);
+        valueDiv.appendChild(attributeValuesInput);
+
+        containerDiv.appendChild(nameDiv);
+        containerDiv.appendChild(valueDiv);
+
+        attributeInputDiv.appendChild(containerDiv);
+        attributeInputDiv.appendChild(document.createElement("br"));
+    });
 
 
     proceedBtn.addEventListener("click", ()=>{
@@ -41,11 +59,11 @@ if(addAttributeBtn && proceedBtn){
         attributeCount = 0;
         attributes = [];
         attributeValues = [];
-    
+
         // get values from page
         const attributeNameElements = document.getElementsByClassName("attribute-name");
         const attributeValuesElements = document.getElementsByClassName("attribute-values");
-        
+            
         // construct the tabular view for users
         for (let i = 0; i < attributeNameElements.length; i++) {
             const element = attributeNameElements[i];

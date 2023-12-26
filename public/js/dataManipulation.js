@@ -1,11 +1,7 @@
-import {
-    getParent,
-    getChildren,
-    getAllParents,
-  } from "./tree.js";
-  
+import { getParent, getChildren, getAllParents } from "./tree.js";
+import { getLastClickedCell } from './shared.js';
 
-function dataManipulation(event,treeRoot) {
+function dataManipulation(event, treeRoot) {
   const inputField = event.target;
   const rowId = parseInt(
     inputField.closest("tr").getAttribute("data-timeseries-row")
@@ -17,7 +13,6 @@ function dataManipulation(event,treeRoot) {
     inputField.closest("table").getAttribute("data-timeseries-column")
   );
 
-  // Update all parent inputs
   parentRowIds.forEach((parentRowId) => {
     const timeseriesTable = document.querySelector(
       `table[data-timeseries-column="${timeseriesIdclicked}"]`
@@ -112,6 +107,7 @@ function dataManipulation(event,treeRoot) {
         const newValue = ratio * parseInt(parentInputBeforeChange.value);
         currentChildInput.value = newValue;
       } else {
+        console.log("id1", timeseriesIdclicked);
         const timeseriesTable = document.querySelector(
           `table[data-timeseries-column="${timeseriesIdclicked}"]`
         );
@@ -150,6 +146,90 @@ function dataManipulation(event,treeRoot) {
       updateChildrenRecursively(childRowId, parentInput);
     }
   });
+  
 }
 
-export { dataManipulation }
+function copyData(event) {
+  const inputField = event.target;
+  const timeseriesIdclicked = parseInt(
+    inputField.closest("table").getAttribute("data-timeseries-column")
+  );
+  console.log("clicked", timeseriesIdclicked);
+  const timeTable = document.querySelector(
+    `table[data-timeseries-column="${timeseriesIdclicked}"]`
+  );
+  const cellsInColumn = Array.from(
+    timeTable.querySelectorAll(".paste-target")
+  );
+
+  // Extract data from cells and join into a newline-separated string
+  const columnData = cellsInColumn.map((cell) => cell.value).join("\n");
+  navigator.clipboard.writeText(columnData).then(() => {
+    alert('Data copied of colmn' + timeseriesIdclicked); // Display an alert after successful copy
+  }).catch((error) => {
+    console.error('Unable to copy data to clipboard', error);
+  });
+}
+
+// Function to paste data to timeseries table
+function pasteData(event) {
+  const inputField = event.target;
+  const timeseriesIdclicked = parseInt(
+    inputField.closest("table").getAttribute("data-timeseries-column")
+  );
+  
+  console.log("id", timeseriesIdclicked);
+  const timeTable = document.querySelector(
+    `table[data-timeseries-column="${timeseriesIdclicked}"]`
+  );
+  const selectedCells = Array.from(
+    timeTable.querySelectorAll(".paste-target")
+  );
+
+  // Read data from the clipboard
+  navigator.clipboard
+    .readText()
+    .then((clipboardData) => {
+      // Split the clipboard data into an array of lines
+      const columnData = clipboardData
+        .split("\n")
+        .filter((line) => line.trim() !== "");
+
+      // Check if the number of rows in the clipboard matches the number of selected cells
+      if (columnData.length === selectedCells.length) {
+        // Update the value of each selected input field with the corresponding data from the clipboard
+        selectedCells.forEach((cell, index) => {
+          if (cell) {
+            // Access the input field directly by index
+            cell.value = columnData[index] || "";
+            cell.classList.add("paste-target");
+          } else {
+            console.error("Input field not found for cell:", cell);
+          }
+        });
+      } else {
+        alert(
+          "Invalid paste data. Please make sure the copied data matches the number of rows."
+        );
+      }
+    })
+    .catch((error) => {
+      console.error("Unable to read data from clipboard", error);
+    });
+}
+
+document.getElementById('copy').addEventListener('click', function () {
+  const lastClickedCell = getLastClickedCell();
+  if (lastClickedCell) {
+    copyData(lastClickedCell);
+  }
+});
+
+document.getElementById('paste').addEventListener('click', function () {
+  const lastClickedCell = getLastClickedCell();
+  if (lastClickedCell) {
+    pasteData(lastClickedCell);
+  }
+});
+
+export { dataManipulation };

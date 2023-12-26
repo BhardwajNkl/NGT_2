@@ -37,10 +37,100 @@ th, td{
 
 /*  */
 
-#attribute-input-div input{
+/* #attribute-input-div input{
     color: red;
     height: 30px;
     width: 30%;
     margin-left: 5px;
     margin-top: 5px;
+} */
+#main-container {
+    position: relative;
 }
+
+.buttonsCopyPaste {
+    position: absolute;
+    top: -36px;
+    /* botto */
+    right: 10px;
+    display: flex;
+    gap: 10px;
+    
+    margin-right: 50px;
+  }
+
+  .buttons{
+    display: flex;
+    gap: 10px;
+    justify-content: end;
+    margin-right: 50px;
+  }
+
+  #add-attribute-btn,
+  #proceed-btn {
+    background-color: #007bff;
+    color: #fff;
+    padding: 10px 20px;
+    border: none;
+    border-radius: 4px;
+    cursor: pointer;
+    margin-bottom: 10px;
+  }
+
+  h2 {
+    color: green;
+    text-align: center;
+    font-size: 30px;
+  }
+
+  p {
+    font-weight: 700;
+    margin-left: 30px;
+    font-size: 20px;
+  }
+
+  #attribute-input-div {
+    margin-left: 30px;
+  }
+
+  .attribute-input-container {
+    display: flex;
+    flex-direction: row;
+    gap: 150px;
+  }
+
+  label {
+    font-weight: bold;
+    color: #007bff;
+    margin-right: 20px;
+  }
+
+  .input-field {
+    padding: 8px;
+    border: 1px solid #ccc;
+    border-radius: 4px;
+    box-sizing: border-box;
+    width: 100%;
+  }
+
+  #create-time-column-btn {
+    background-color: #007bff;
+    color: #fff;
+    padding: 10px;
+    border: none;
+    border-radius: 50px;
+    /* margin: 40px; */
+    width: 200px;
+    cursor: pointer;
+  }
+
+  #copy,
+  #paste {
+    background-color: #007bff;
+    color: #fff;
+    padding: 10px 20px;
+    border: none;
+    border-radius: 4px;
+    cursor: pointer;
+    margin-bottom: 10px;
+  }
