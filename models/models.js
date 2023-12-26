@@ -111,65 +111,7 @@ const DataItem = sequelize.define(
         timestamps: false
     }
 );
-/* UserProject model:
-This is the join table model for User and project mapping.
-*/
-// const UserProject = sequelize.define(
-//     'user_project',
-//     {
 
-//     },
-//     {
-//         timestamps: false,
-//         freezeTableName: true
-//     }
-// )
-
-/*Result model:
-Represents a resut in the application.
-Every result is associated with a User[with role TEACHER] who has created it.
-The relation between User to Result is one-to-many
-*/
-// const Result = sequelize.define(
-//     'result',
-//     {
-//         resultId : {
-//             type: DataTypes.INTEGER,
-//             primaryKey: true,
-//             autoIncrement: true
-//         },
-
-//         studentName: {
-//             type: DataTypes.STRING,
-//             allowNull: false,
-//         },
-
-//         rollNumber: {
-//             type: DataTypes.STRING,
-//             allowNull: false,
-//             unique: true
-//         },
-
-//         dob: {
-//             type: DataTypes.DATEONLY,
-//             allowNull: false
-//         },
-
-//         marks: {
-//             type: DataTypes.INTEGER,
-//             allowNull: false
-//         }
-//     },
-
-//     {
-//         freezeTableName: true,
-//         timestamps: false
-//     }
-// )
-
-// Let's define the User-Role many-to-many relationship.
-// User.belongsToMany(Role, { through: UserRole });
-// Role.belongsToMany(User, { through: UserRole });
 User.hasMany(Project);
 Project.belongsTo(User);
 Project.hasMany(Attribute);
@@ -179,9 +121,4 @@ AttributeValue.belongsTo(Attribute);
 Project.hasMany(DataItem);
 DataItem.belongsTo(Project);
 
-// // And lastly, let's define the User-Result one-to-many mapping.
-// User.hasMany(Result);
-// Result.belongsTo(User);
-
-// module.exports = { User, Role, Result };
 module.exports = { User, Project, Attribute, AttributeValue, DataItem };

@@ -1,12 +1,9 @@
-// experiment code
 import {
     constructTree,
 } from "./tree.js";
 import {
     createLabelTable,
 } from "./timeseries.js";
-
-// experiment end
 
 var attributeCount = 0;
 var attributes = [];

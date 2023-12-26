@@ -2,14 +2,7 @@ import{
     attributes, attributeCount, attributeValues
 } from "./input.js";
 const postData = (newProject,selectedDataValues, columnCount)=>{
-    // format={
-    //     "projectType":"new/old",
-    //     "attributes":"attributes array",
-    //     "attributeValues":"attributeValues array",
-    //     "attributeCount":"attributeCount",
-    //     "timeseriesdata":"all/latest time series data"
-    // }
-    
+      
     let dataToPost = null;
     if(newProject){
         dataToPost = {
@@ -27,7 +20,6 @@ const postData = (newProject,selectedDataValues, columnCount)=>{
             "columnCount":columnCount
         }
     }
-    console.log(dataToPost);
     fetch("/data",
         {
             headers: {
@@ -58,6 +50,4 @@ const getData = async ()=>{
     return res;
 
 }
-
-
 export {postData, getData}

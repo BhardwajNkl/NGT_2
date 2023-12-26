@@ -2,7 +2,7 @@ import{
     postData
 } from "./api_caller.js";
 
-// Function to get rows from tables based on data attributes
+// Function to get timeseries data values from tables based on data attributes
 function getAllTimeSeriesData() {
     // Get all tables in the document
     var tables = document.querySelectorAll('table[data-timeseries-column]');
@@ -14,13 +14,8 @@ function getAllTimeSeriesData() {
         rows.forEach(function(row) {
             var dataTimeSeriesRow = row.getAttribute('data-timeseries-row');
             if (dataTimeSeriesRow !== null && dataTimeSeriesRow !== undefined) {
-                // get inner input element's value
                 var inputElement = row.querySelector('input.value');
                 var value = inputElement.value;
-                // const childInput = table.querySelector(
-                //     `[data-timeseries-row="${dataTimeSeriesRow}"] input.value`
-                //   );
-                // const value = childInput.value;
                 selectedDataValues.push({
                     dataTimeSeriesColumn: dataTimeSeriesColumn,
                     dataTimeSeriesRow: dataTimeSeriesRow,
@@ -29,38 +24,7 @@ function getAllTimeSeriesData() {
             }
         });
     });
-    // console.log(selectedDataValues);
     const columnCount = tables.length;
-    return {selectedDataValues, columnCount};
-}
-
-function getLatestTimeSeriesData() {
-    // only last table is or interest
-    const timeseriesContainer = document.getElementById("timeseries-container");
-    const lastTable = timeseriesContainer.lastChild;
-    // Array to store data item values
-    var selectedDataValues = [];
-    var dataTimeSeriesColumn = lastTable.getAttribute('data-timeseries-column');
-    var rows = lastTable.querySelectorAll('tr[data-timeseries-row]');
-    rows.forEach(function(row) {
-        var dataTimeSeriesRow = row.getAttribute('data-timeseries-row');
-        if (dataTimeSeriesRow !== null && dataTimeSeriesRow !== undefined) {
-            // get inner input element's value
-            var inputElement = row.querySelector('input.value');
-            var value = inputElement.value;
-            // const childInput = table.querySelector(
-            //     `[data-timeseries-row="${dataTimeSeriesRow}"] input.value`
-            //   );
-            // const value = childInput.value;
-            selectedDataValues.push({
-                dataTimeSeriesColumn: dataTimeSeriesColumn,
-                dataTimeSeriesRow: dataTimeSeriesRow,
-                value: value
-            });
-        }
-    });
-    // console.log(selectedDataValues);
-    const columnCount = lastTable.getAttribute("data-timeseries-column");
     return {selectedDataValues, columnCount};
 }
 
@@ -72,15 +36,9 @@ saveBtn.addEventListener("click",()=>{
     if(!newProjectInputDiv){
         newProject = false;
     } 
-    let data = null;
-    // get time series data
-    if(newProject){
-        data = getAllTimeSeriesData();
-    } else{
-        data = getAllTimeSeriesData();
-    }
+    let data = getAllTimeSeriesData();
     // post to server
     postData(newProject,data.selectedDataValues, data.columnCount);
 })
 
-export {getAllTimeSeriesData, getLatestTimeSeriesData};
+export {getAllTimeSeriesData};

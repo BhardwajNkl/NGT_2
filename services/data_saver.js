@@ -1,12 +1,7 @@
-const {User, Project, Attribute, attributeValues, DataItem, AttributeValue} = require("../models/models");
-// function to save data for new project
-// 1. save attributes and other details
-// 2. save time series data
-const saveNewProjectData = async (attributes, attributeValues, attributeCount, timeseriesData, columnCount)=> {
-    // console.log("new project");
-    // console.log(attributes)
-    // console.log(timeseriesData);
+const {User, Project, Attribute, DataItem, AttributeValue} = require("../models/models");
 
+const saveNewProjectData = async (attributes, attributeValues, attributeCount, timeseriesData, columnCount)=> {
+    
     //  CURRENTLY, THERE IS ONLY ONE USER. SO WE COULD DIRECTY SAVE FOR HIM. BUT WHEN WE EXTEND THE APPLICATION FOR MULTIPLE USERS,
     // WE WOULD FIRST GET THE USER, GET THE PROJECT AND ONLY THEN WE CAN SAVE DATA IN THE DATABASE.
 
@@ -58,10 +53,7 @@ const saveNewProjectData = async (attributes, attributeValues, attributeCount, t
 }
 
 // function for saving timeseries data for existng project
-// save last latest column data
 const saveExistingProjectTimeSeriesData = async (timeseriesData, columnCount)=> {
-    console.log("old project")
-    console.log(timeseriesData);
     // update project's columnCount
     const user = await User.findOne({ where: { username:"root" }});
     const projects = await user.getProjects({
@@ -77,8 +69,6 @@ const saveExistingProjectTimeSeriesData = async (timeseriesData, columnCount)=> 
 
     // now update or save timeseries data items
     timeseriesData.forEach(async item=>{
-        console.log("hahahaha")
-        console.log(item);
         await DataItem.findOrCreate({
             where: {
               row: item.dataTimeSeriesRow,
@@ -96,7 +86,6 @@ const saveExistingProjectTimeSeriesData = async (timeseriesData, columnCount)=> 
             // 'created' will be a boolean indicating whether the record was created or found
         
             if (!created) {
-              // If the record already existed, update its values
               await dataItem.update({
                 value: item.value,
               })
@@ -130,7 +119,6 @@ const getAllDataOfProject = async ()=>{
         ],
       });
     const project = projects[0];
-    // const projectJson = project.toJSON();
     const attributeList = project.attributes;
     const attributeNameList = attributeList.map(at=>at.attributeName);
     let attributeValsList = attributeList.map(at=>{
@@ -145,9 +133,6 @@ const getAllDataOfProject = async ()=>{
         return obj;
     });
     const columnCount = project.columnCount;
-    console.log(attributeNameList);
-    console.log(attributeValsList);
-    console.log(dataItemList);
 
     return {"attributes":attributeNameList,
     "attributeCount":attributeNameList.length,

@@ -28,16 +28,8 @@ app.use(express.json());
 //using router
 app.use("/", router());
 
-
-// Before starting the server we want connect to the database and also persist the roles which will be used by the application.
-
-
-
-
 sequelize.sync({ force: true }).then(async ()=>{
     console.log("database connected");
-
-    // lets default user and project
     const user = {
         username:"root",
         password: "root"

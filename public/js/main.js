@@ -11,7 +11,6 @@ import{
 
 // check if we need to load existing project
 // if new-project-data-input div is not defined, then we need.
-// const loadProjectDiv = document.getElementById("load-project");
 const newProjectDataInputDiv = document.getElementById("new-project-data-input");
 
 if(!newProjectDataInputDiv){
@@ -20,7 +19,7 @@ if(!newProjectDataInputDiv){
     let columnCount = loadedProjectData.columnCount;
     // call create label table
     createLabelTable();
-    // find how many cols are there. create time columns. 
+    // create timeseries columns. 
     for (let i = 0; i < columnCount; i++) {
           createTimeColumn();      
     }

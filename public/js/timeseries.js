@@ -10,17 +10,6 @@ import { dataManipulation } from "./dataManipulation.js";
 import { attributes, attributeCount, attributeValues, treeRoot } from "./input.js";
 import { setLastClickedCell } from './shared.js';
 
-// // Sample Input 1
-// const attributes = new Array("country", "gender", "age group");
-// const attributeCount = 3;
-// const attributeValues = [];
-// attributeValues.push(new Array("india", "australia", "america"));
-// attributeValues.push(new Array("male", "female"));
-// attributeValues.push(new Array("20-40", "40-60", "60-80"));
-
-// // Construct the tree for Sample Input 1
-// const treeRoot = constructTree(attributes, attributeValues);
-
 function nestedForEach(arrays, callback, currentDepth = 0, currentValues = []) {
   if (currentDepth === arrays.length) {
     // Base case: if the current depth is equal to the number of arrays, execute the callback
