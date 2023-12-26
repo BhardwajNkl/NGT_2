@@ -5,18 +5,20 @@ const userRouter = require("./user_router");
 
 const router = express.Router();
 
-// Handling the root route of the application.
-router.get("/", (req, res) => {
-    res.redirect("/signin");
-});
+module.exports = (data)=>{
+    // Handling the root route of the application.
+    router.get("/",(req,res)=>{
+        res.redirect("/signin");
+    });
 
-router.get("/signin", (req, res) => {
-    res.render("signin.ejs");
-});
+    router.get("/signin", (req, res) => {
+        res.render("signin.ejs");
+    });
 
-// Let's define sub routes
-router.use("/home", homeRouter);
-// router.use("/data", apiRouter);
-router.use("/api/user", userRouter);
-
-module.exports = router;
+    // Let's define sub routes
+    router.use("/home",homeRouter());
+    router.use("/data", apiRouter());
+    router.use("/api/user", userRouter);
+   
+    return router;
+}

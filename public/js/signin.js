@@ -14,7 +14,7 @@ document.addEventListener("DOMContentLoaded", () => {
       console.log('user',username, password)
       if (username && password) {
         try {
-          const response = await fetch("http://localhost:3001/api/user/signin", {
+          const response = await fetch("http://localhost:3000/api/user/signin", {
             method: "POST",
             headers: {
               "Content-Type": "application/json",
@@ -26,7 +26,7 @@ document.addEventListener("DOMContentLoaded", () => {
           if (response.ok) {
             const responseData = await response.json();
             
-            window.location.href = "http://localhost:3001/home";
+            window.location.href = "http://localhost:3000/home";
            } else if (response.status === 404 || response.status === 401) {
             loginError.textContent = "Wrong username or password.";
             loginError.style.color = "red";

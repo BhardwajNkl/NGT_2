@@ -5,8 +5,6 @@ const router = require('./routes/router');
 const sequelize = require("./DB/DBconfig");
 require("./models/models");
 
-const {User} = require("./models/models")
-
 const ejs = require('ejs');
 
 const path = require('path');
@@ -28,7 +26,7 @@ app.use(bodyParser.urlencoded({ extended: false }));
 app.use(express.json());
 
 //using router
-app.use("/", router);
+app.use("/", router());
 
 
 // Before starting the server we want connect to the database and also persist the roles which will be used by the application.
