@@ -10,6 +10,7 @@ const ejs = require('ejs');
 const path = require('path');
 
 const bodyParser = require('body-parser');
+const { User, Project } = require('./models/models');
 
 const app = express();
 
@@ -22,7 +23,7 @@ app.set('views', path.join(__dirname, "views"));
 
 //using body-parser
 app.use(bodyParser.urlencoded({ extended: false }));
-app.use(bodyParser.json());
+app.use(express.json());
 
 //using router
 app.use("/", router());
@@ -33,8 +34,16 @@ app.use("/", router());
 
 
 
-sequelize.sync({ force: true }).then(()=>{
+sequelize.sync({ force: true }).then(async ()=>{
     console.log("database connected");
+
+    // lets default user and project
+    const user = {
+        username:"root",
+        password: "root"
+    }
+    const createdUser = await User.create(user);
+    
     app.listen(3000, () => { 
         console.log("server started on port 3000!");
     });

@@ -36,6 +36,9 @@ const Project = sequelize.define(
             type: DataTypes.STRING,
             allowNull: false,
             unique: true
+        },
+        columnCount: {
+            type: DataTypes.INTEGER,
         }
     },
     {
@@ -55,7 +58,6 @@ const Attribute = sequelize.define(
         attributeName: {
             type: DataTypes.STRING,
             allowNull: false,
-            unique: true
         }
     },
     {
@@ -75,7 +77,6 @@ const AttributeValue = sequelize.define(
         attributeValueName: {
             type: DataTypes.STRING,
             allowNull: false,
-            unique: true
         }
     },
     {
@@ -95,17 +96,14 @@ const DataItem = sequelize.define(
         col: {
             type: DataTypes.INTEGER,
             allowNull: false,
-            unique: true
         },
         row: {
             type: DataTypes.INTEGER,
             allowNull: false,
-            unique: true
         },
         value: {
             type: DataTypes.INTEGER,
             allowNull: false,
-            unique: true
         }
     },
     {
@@ -186,4 +184,4 @@ DataItem.belongsTo(Project);
 // Result.belongsTo(User);
 
 // module.exports = { User, Role, Result };
-module.exports = { User, Project };
+module.exports = { User, Project, Attribute, AttributeValue, DataItem };

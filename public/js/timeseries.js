@@ -210,4 +210,4 @@ const createTimeColumn = () => {
 const btn = document.getElementById("create-time-column-btn");
 btn.addEventListener("click", createTimeColumn);
 
-export {createLabelTable}
+export {createLabelTable, createTimeColumn}
