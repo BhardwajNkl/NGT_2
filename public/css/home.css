@@ -11,8 +11,6 @@
 
 #timeseries-container{
     flex-grow: 1;
-    
-    /* make it flex container */
     display: flex;
     flex-direction: row;
 
@@ -39,7 +37,7 @@ th, td{
     position: relative;
 }
 
-.buttonsCopyPaste {
+.buttonsCopyPasteSave {
     position: absolute;
     top: -36px;
     /* botto */
@@ -116,7 +114,8 @@ th, td{
   }
 
   #copy,
-  #paste {
+  #paste,
+  #save-btn {
     background-color: #007bff;
     color: #fff;
     padding: 10px 20px;
@@ -124,4 +123,13 @@ th, td{
     border-radius: 4px;
     cursor: pointer;
     margin-bottom: 10px;
+  }
+
+  .selected-cell {
+    border: 2px solid #007bff;
+  }
+
+  .paste-deactivated {
+    opacity: 0.5; 
+    cursor:none
   }

@@ -1,0 +1,33 @@
+html,
+body {
+  height: 100%;
+  margin: 0;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.success-message {
+  color: #f8f9fa;
+  font-size: 24px;
+  text-align: center;
+  padding: 20px;
+  border-radius: 5px;
+  background-color: #5cb85c;
+  width: 100vw;
+}
+
+.login-link {
+  margin-top: 30px;
+  text-align: center;
+  margin-right: 25px;
+}
+
+.login-link a {
+  color: #007bff;
+  text-decoration: none;
+}
+
+.login-link a:hover {
+  text-decoration: underline;
+}

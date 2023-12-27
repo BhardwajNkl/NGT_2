@@ -1,0 +1,75 @@
+<html>
+    <head>
+        <link rel="stylesheet" type="text/css" href="../css/home.css">
+    </head>
+    <body>
+
+        <!-- if the project is not already created by this user, we display "new-project-data-input"
+            to take the required values. And, if the user has already created a project, we do not display
+            this section.
+
+        -->
+        <div id="header">
+            <h2>Forecast Application</h2>
+        </div>
+
+        <% if(!hasExistingProject){ %>
+            
+            <div id="new-project-data-input">
+                <p>Add attributes and their values</p>
+                <div class="buttons">
+                <button id="add-attribute-btn">add</button><br>
+                <button id="proceed-btn">proceed</button>
+            </div>
+                <div id="attribute-input-div">
+
+                </div>
+            </div>
+
+            <div id="load-project" style="visibility:hidden">
+                <button id="create-time-column-btn">add time series column +</button>
+                
+                <div id="main-container">
+                    <div id="label-container">
+                        
+                    </div>
+                    <div id="timeseries-container">
+
+                    </div>
+                    <div class="buttonsCopyPasteSave">
+                        <button id="copy">copy</button><br>
+                        <button id="paste">paste</button><br>
+                        <button id="save-btn">save</button>
+                    </div>
+                </div>
+            </div>
+
+        <% } %>
+
+        <% if(hasExistingProject){ %>
+            <div id="load-project">
+                <button id="create-time-column-btn">add time series column +</button>
+                <div id="main-container">
+                    <div id="label-container">
+                        
+                    </div>
+                    <div id="timeseries-container">
+
+                    </div>
+                    <div class="buttonsCopyPasteSave">
+                        <button id="copy">copy</button><br>
+                        <button id="paste">paste</button><br>
+                        <button id="save-btn">save</button>
+                    </div>
+                </div>
+            </div>
+        <% } %>
+        
+    </body>
+    <script src="../js/homePage/api_caller.js" type="module"></script>
+    <script src="../js/homepage/home.js" type="module"></script>
+    <script src="../js/homePage/page_data.js" type="module"></script>
+    <script src="../js/homePage/input.js" type="module"></script>
+    <script src="../js/homePage/tableGeneration.js" type="module"></script>
+    <script src="../js/utils/warning.js" type="module"></script>
+</html>

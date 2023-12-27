@@ -18,6 +18,12 @@ body {
     height: 300px;
 }
 
+.container-signup {
+    width: 500px;
+    height: 370px;
+}
+
+
 h2 {
     text-align: center;
     color: #333;
@@ -42,8 +48,31 @@ button {
     padding: 10px;
     border: none;
     border-radius: 50px;
-    margin: 40px;
+    margin: 10px;
     width: 200px;
     margin-left: 30%;
     cursor: pointer;
 }
+
+.signin { 
+    margin-bottom: 0;
+}
+
+.signup-link {
+    margin-top: 10px;
+    text-align: center;
+  }
+  
+  .signup-link a {
+    color: #337ab7;
+    text-decoration: none;
+  }
+  
+  .signup-link a:hover {
+    text-decoration: underline;
+  }
+
+  #signup {
+    margin: 40px;
+    margin-left: 30%;
+  }

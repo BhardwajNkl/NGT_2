@@ -3,11 +3,11 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link rel="stylesheet" type="text/css" href="../css/signin.css">
+    <link rel="stylesheet" type="text/css" href="../css/auth.css">
 </head>
 <body>
-    <div class="container">
-        <h2>Sign In</h2>
+    <div class="container container-signup">
+        <h2>Sign Up</h2>
         <div class="error" id="loginError"></div>
         <form id="form">
             <label for="username">Username:</label>
@@ -16,9 +16,12 @@
             <label for="password">Password:</label>
             <input type="password" id="password" name="password" required>
 
-            <button type="button" id="signin">Sign In</button>
+            <label for="confirmPassword">Confirm Password:</label>
+            <input type="password" id="confirmPassword" name="confirmPassword" required>
+
+            <button type="button" id="signup">Sign Up</button>
         </form>
     </div>
-    <script src="../js/signin.js" type="module"></script>
+    <script src="../js/signup.js" type="module"></script>
 </body>
 </html>

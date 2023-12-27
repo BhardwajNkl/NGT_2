@@ -1,25 +1,26 @@
 const express = require('express');
 
-const router = require('./routes/router');
+const router = require('./src/routes/router');
 
-const sequelize = require("./DB/DBconfig");
-require("./models/models");
+const db = require('./src/models/index')
+
 
 const ejs = require('ejs');
 
 const path = require('path');
 
 const bodyParser = require('body-parser');
-const { User, Project } = require('./models/models');
+const cookieParser = require('cookie-parser');
 
 const app = express();
+app.use(cookieParser());
 
 //setting static files directories
 app.use(express.static(path.join(__dirname, "public")));
 
 //setting view engine
 app.set('view engine', 'ejs');
-app.set('views', path.join(__dirname, "views"));
+app.set("views", path.join(__dirname, "src", "views"));
 
 //using body-parser
 app.use(bodyParser.urlencoded({ extended: false }));
@@ -28,13 +29,13 @@ app.use(express.json());
 //using router
 app.use("/", router());
 
-sequelize.sync({ force: true }).then(async ()=>{
+db.sequelize.sync().then(async ()=>{
     console.log("database connected");
-    const user = {
-        username:"root",
-        password: "root"
-    }
-    const createdUser = await User.create(user);
+    // const user = {
+    //     username:"root",
+    //     password: "root"
+    // }
+    // const createdUser = await User.create(user);
     
     app.listen(3000, () => { 
         console.log("server started on port 3000!");
