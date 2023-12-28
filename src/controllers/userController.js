@@ -20,13 +20,14 @@ const signup = async (req, res) => {
 const signin = async (req, res) => {
   try {
     // console.log('user',req.body.username)
+    console.log('hio')
     const user = await User.findOne({
       where: {
         username: req.body.username,
       },
     });
     if (!user) {
-      return res.status(404).send({ message: "User Not found." });
+      return res.status(400).send({ message: "User Not found." });
     }
     const passwordIsValid = bcrypt.compareSync(
         req.body.password,

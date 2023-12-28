@@ -1,6 +1,6 @@
 import {
     constructTree,
-} from "../utils/tree.js";
+} from "./utils/tree.js";
 import {
     createLabelTable,
 } from "./tableGeneration.js";
@@ -49,7 +49,7 @@ if(addAttributeBtn && proceedBtn){
         attributeInputDiv.appendChild(document.createElement("br"));
     });
 
-
+console.log('add')
     proceedBtn.addEventListener("click", ()=>{
 
         // reset old input data
@@ -88,7 +88,7 @@ if(addAttributeBtn && proceedBtn){
         createLabelTable();
     })
 }
-
+console.log('proceed')
 const setInput = (attribs, attribCount, attribVals)=>{
     attributes = attribs;
     attributeCount = attribCount;

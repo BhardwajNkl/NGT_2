@@ -125,9 +125,19 @@ th, td{
     margin-bottom: 10px;
   }
 
-  .selected-cell {
-    border: 2px solid #007bff;
-  }
+.selected-cell {
+    border: 2px solid transparent; 
+    animation: highlight 2s forwards 0s 1;
+}
+
+@keyframes highlight {
+    0% {
+        border-color: #007bff;
+    }
+    100% {
+      border-color: rgb(118, 118, 118); 
+}
+}
 
   .paste-deactivated {
     opacity: 0.5; 

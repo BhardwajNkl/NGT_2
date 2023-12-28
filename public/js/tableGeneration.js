@@ -1,6 +1,6 @@
 import { dataManipulation } from "./dataManipulation.js";
 import { attributes, attributeCount, attributeValues, treeRoot } from "./input.js";
-import { setLastClickedCell } from '../utils/shared.js';
+import { setLastClickedCell } from './utils/shared.js';
 
 function nestedForEach(arrays, callback, currentDepth = 0, currentValues = []) {
   if (currentDepth === arrays.length) {

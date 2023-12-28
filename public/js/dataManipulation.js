@@ -1,5 +1,5 @@
-import { getParent, getChildren, getAllParents } from "../utils/tree.js";
-import { getLastClickedCell } from '../utils/shared.js';
+import { getParent, getChildren, getAllParents } from "./utils/tree.js";
+import { getLastClickedCell } from './utils/shared.js';
 
 function dataManipulation(event, treeRoot) {
   const inputField = event.target;
@@ -21,9 +21,9 @@ function dataManipulation(event, treeRoot) {
       `[data-timeseries-row="${parentRowId}"] input`
     );
     parentInput.classList.add("selected-cell");
-    setTimeout(() => {
-      parentInput.classList.remove("selected-cell");
-    }, 2000)
+    // setTimeout(() => {
+    //   parentInput.classList.remove("selected-cell");
+    // }, 2000)
     if (parentInput) {
       // If updating a parent, calculate the sum of all child rows
       const childrenRowIds = getChildren(parentRowId, treeRoot);
@@ -95,6 +95,7 @@ function dataManipulation(event, treeRoot) {
         childInput = timeseriesTable.querySelector(
           `[data-timeseries-row="${childId}"] input.value`
         );
+        childInput.classList.add("selected-cell");
         childValueBeforeChange = parseInt(childInput.value) || 0;
         ratio =
           sumOfChildrenBeforeChangePrevTable !== 0
@@ -116,6 +117,7 @@ function dataManipulation(event, treeRoot) {
         childInput = timeseriesTable.querySelector(
           `[data-timeseries-row="${childId}"] input`
         );
+        childInput.classList.add("selected-cell");
         childValueBeforeChange = parseInt(childInput.value) || 0;
         console.log("brfore change", childValueBeforeChange);
         ratio =
@@ -148,9 +150,9 @@ function dataManipulation(event, treeRoot) {
       `[data-timeseries-row="${childRowId}"] input`
     );
     childInput.classList.add("selected-cell");
-    setTimeout(() => {
-      childInput.classList.remove("selected-cell");
-    }, 2000)
+    // setTimeout(() => {
+    //   childInput.classList.remove("selected-cell");
+    // }, 2000)
     if (event.key == "Enter") {
       updateChildrenRecursively(childRowId, parentInput);
     }
