@@ -1,20 +1,31 @@
-what to persist so that reconstruct easy:
-1. attributes
-2. attributeCount
-3. attributeValues
+1. First see the demo to have an understanding of the flow.
+    >> To use the app
+        >> create a database with name as "ngt3"
+        >> run node app.js
+        >> signup and signin
+        >> If you have already created your forecast project, it will show. Otherwise, you get the option to create it.
+
+    >> While creating project:
+        >> provide attribute (such as: country)
+        >> provide values for that attribute. Comma seperated. (such as: India, Australia, America)
+        >> add as many attributes as you need.
+    
+    >> while working on forecast project
+        >> when you update a non-total cell, all the parent totals get updated instantly.
+        >> when you update a total cell, all the children cells are updated based on ratio of existing values or ratio from previous column. YOU NEED TO HIT 'ENTER' after inserting a total.
+
+        >> save is for saving the state of your project in database.
+        >> copy: first select any cell of the column you want to copy and then click on copy button.
+        >> paste: first click on any cell of the target column and click paste button.
+        NOTE: entire column is copy/pasted.
+
+2. Next tasks:
+    1. implement logout.
+    2. change the UI
+        >> sign in, registration and home all pages. wherever you see a chance for improvet.
+        >> 'add time series column', 'save', 'copy' and 'paste'.
+
+    NOTE: after every change, make sure the code does not break. It is highly likely as the code, specially the frontend code, is not very well structured.
 
 
-===============================
-tables: user, project, attribute, attribute_value tables
-relation: user_project one-many, project_attribute one-many, 'attribute_attribute_value' one-many
 
->> using above representation, for a given user we can get his/her project. from project we get list of attributes and from attributes we get list of attribute values.
-
-===================================
-
-timeseries data representation:
-data_item table: (data_id, col, row, value)
-relation: project_'data_item' one-many
-
->> for a particular project, we can get all data IDs and therefore get all individual data items to construct the table again.
->> how many time columns: max value of 'col'
