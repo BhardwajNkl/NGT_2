@@ -38,7 +38,7 @@ if(addAttributeBtn && proceedBtn){
         attributeValuesLabel.innerHTML = "Attribute Values: ";
         const attributeValuesInput = document.createElement("input");
         attributeValuesInput.setAttribute("class", "input-field attribute-values");
-
+        
         valueDiv.appendChild(attributeValuesLabel);
         valueDiv.appendChild(attributeValuesInput);
 
